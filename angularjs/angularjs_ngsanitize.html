@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Angular ngSanitze</title>
+</head>
+ 
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        Snippet:
+        <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+        <pre><div ng-bind-html="deliberatelyTrustDangerousSnippet()">
+</div></pre>
+    </div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular-sanitize.js"></script>
+    <script type="text/javascript">
+    var myApp = angular.module('myApp', ['ngSanitize']);
+    myApp.controller('myCtrl', function($scope, $sce) {
+        $scope.snippet =
+            '<p style="color:blue">an html\n' +
+            '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+            'snippet</p>';
+        $scope.deliberatelyTrustDangerousSnippet = function() {
+            return $sce.trustAsHtml($scope.snippet);
+        };
+    })
+    </script>
+</body>
+ 
+</html>

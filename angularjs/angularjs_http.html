@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs HTTP</title>
+    <style type="text/css">
+    table,
+    th,
+    td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    
+    table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+    
+    table tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1>AngularJs Http</h1>
+    <p>
+        <button ng-click="generalGet()">General Get</button>
+        <button ng-click="clear()">Clear Data</button>
+        <button ng-click="shortcutGet()">Shortcut Get</button>
+    </p>
+    <table>
+        <tr>
+            <th>index</th>
+            <th>Name</th>
+            <th>County</th>
+        </tr>
+        <tr ng-repeat="record in records">
+            <td>{{$index}}</td>
+            <td>{{ record.Name }}</td>
+            <td>{{ record.Country }}</td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript">
+    angular.module('myApp', []).controller('myCtrl', function($scope, $http) {
+        $scope.records = [];
+        $scope.clear = function() {
+            $scope.records = [];
+        }
+        $scope.generalGet = function() {
+            $http({
+                method: 'GET',
+                url: './data/record.json'
+            }).success(function(data) {
+                console.log(data)
+                $scope.records = data.records;
+            })
+        }
+        $scope.shortcutGet = function() {
+            $http.get("./data/record.json").success(function(response) {
+                $scope.records = response.records;
+            })
+        }
+
+    })
+    </script>
+</body>
+
+</html>

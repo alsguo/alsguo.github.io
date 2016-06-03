@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Route Service</title>
+    <base href="http://127.0.0.1/sae/angularjs/"/>
+</head>
+
+<body ng-app="routeApp">
+</h2>
+    <div ng-view></div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular-route.js"></script>
+    <script type="text/javascript">
+    var routeApp = angular.module('routeApp', ['ngRoute'])
+
+    routeApp.config(function($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/book', {
+                templateUrl: 'template/book_list.html',
+                controller: 'BookListCtrl'
+            })
+            .when('/book/:id', {
+                templateUrl: 'template/book_item.html',
+                controller: 'BookItemCtrl'
+            })
+            .otherwise({
+                redirectTo: '/book'
+            });
+        $locationProvider.html5Mode(!0);
+    });
+
+    routeApp.controller('BookListCtrl', function($scope, $http) {
+        $scope.books = [];
+        $http.get('./data/book.json').success(function(data) {
+            $scope.books = data.books;
+        })
+    });
+
+    routeApp.controller('BookItemCtrl', function($scope, $http, $routeParams) {
+        $http.get('./data/book.json').success(function(data) {
+            $scope.book = data.books[$routeParams.id - 1];
+        })
+    });
+    </script>
+</body>
+
+</html>

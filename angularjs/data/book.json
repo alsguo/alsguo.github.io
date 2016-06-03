@@ -1,0 +1,33 @@
+{
+    "books": [{
+        "id": 1,
+        "name": "Java编程思想",
+        "author": "埃克尔",
+        "description": "适合初学者与专业人员学习的书籍，是JAVA程序员的必备书籍。"
+    }, {
+        "id": 2,
+        "name": "算法导论",
+        "author": "Thomas H.Cormen，Charles E.Leiserson，Ronald L.Rivest，Clifford Stein",
+        "description": "全书选材经典、内容丰富、结构合理、逻辑清晰，对本科生的数据结构课程和研究生的算法课程都是非常实用的教材，在IT专业人员的职业生涯中，本书也是一本案头必备的参考书或工程实践手册。"
+    }, {
+        "id": 3,
+        "name": "JavaScript高级程序设计",
+        "author": "Nicholas C. Zakas ",
+        "description": "全书从JavaScript语言实现的各个组成部分——语言核心、DOM、BOM、事件模型讲起，深入浅出地探讨了面向对象编程、Ajax与Comet服务器端通信，HTML5表单、媒体、Canvas(包括WebGL)及WebWorkers、地理定位、跨文档传递消息、客户端存储(包括IndexedDB)等新API，还介绍了离线应用和与维护、性能、部署相关的最佳开发实践。"
+    }, {
+        "id": 4,
+        "name": "JavaScript权威指南",
+        "author": "弗兰纳根",
+        "description": "本书要讲述的内容涵盖JavaScript语言本身，以及Web浏览器所实现的JavaScript API。本书更适合有一定编程经验的人阅读。"
+    }, {
+        "id": 5,
+        "name": "HTML5+CSS3从入门到精通",
+        "author": "DongBo Li",
+        "description": "《HTML5+CSS3从入门到精通》内容翔实、结构清晰、循序渐进，基础知识与案例实战紧密结合，既可作为HTML5+CSS3初学者的入门教材，也适合作为中高级用户对新技术作进一步学习的参考用书。"
+    }, {
+        "id": 6,
+        "name": "用AngularJS开发下一代Web应用",
+        "author": "Brad Green, Shyam Seshadri",
+        "description": "AngularJS是一款来自Google的前端JS框架，它的核心特性有：MVC、双向数据绑定、指令和语义化标签、模块化工具、依赖注入、HTML模板，以及对常用工具的封装，例如$http、$cookies、$location等。AngularJS框架的体积非常小，但是设计理念和功能却非常强大，值得前端开发者深入学习"
+    }]
+}

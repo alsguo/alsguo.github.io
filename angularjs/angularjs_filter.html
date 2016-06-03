@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Filter</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h2>大小写转换</h2>
+    <p>姓名：
+        <input ng-model="yourName">
+    </p>
+    <p>大写：{{yourName | uppercase}}</p>
+    <p>小写：{{yourName | lowercase}}</p>
+    <h2>格式化数字 number</h2>
+    <p>请输入数字：
+        <input ng-model="anumber">
+    </p>
+    <p><span>{{anumber | number}}</span></p>
+    <h2>货币格式 currency</h2>
+    <p>单价：
+        <input type="number" ng-model="price">
+    </p>
+    <p>数量：
+        <input type="number" ng-model="numb">
+    </p>
+    <p>总价：{{numb * price | currency : '￥'}}</p>
+    <h2>时间DATE格式化 date</h2>
+    <p><span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
+        <span>{{strDate | date:'medium'}}</span>
+        <br>
+        <span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
+        <span>{{strDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+        <br>
+        <span ng-non-bindable>{{1288323623006 | date:'MM/dd/yyyy @ h:mma'}}</span>:
+        <span>{{strDate | date:'MM/dd/yyyy @ h:mma'}}</span>
+        <br>
+    </p>
+    <h2>JSON格式化 json</h2>
+    <p><span>{{jsonObj | json}}</span></p>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript">
+    angular.module('myApp', []).controller('myCtrl', function($scope) {
+        $scope.yourName = "Your Name";
+        $scope.anumber = 100100100;
+        $scope.price = 100;
+        $scope.numb = 1;
+        $scope.strDate = '1288323623006';
+        $scope.jsonObj = {'name':'ZhangSan','age':20};
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs Instruction</title>
+	<style type="text/css">
+		.text-red{
+			color:red;
+		}
+	</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+	<div ng-init="ngInit='ng-init'">
+		<h4>{{ngInit}}</h4>
+	</div>
+	<div>
+		<h4>ng-model</h4>
+		<input type="text" ng-model="aname">
+	</div>
+	<div>
+		<h4>ng-bind</h4>
+		<span ng-bind="aname"></span>
+	</div>
+	<div>
+		<h4>ng-bind-template</h4>
+		<p ng-bind-template="{{aname}}{{myHTML}}"></p>
+	</div>
+	<div>
+		<h4>ng-show,ng-hide</h4>
+		Click me: <input type="checkbox" ng-model="checked" >
+		<p ng-show="checked">checked</p>
+		<p ng-hide="checked">no checked</p>
+	</div>
+	<div>
+		<h4>ng-style</h4>
+		<p ng-non-bindable>ng-style="{'background-color':colorName}"</p>
+		<div style="height:20px" ng-style="{'background-color':colorName}"></div>
+	</div>
+	<div>
+		<h2>ng-class</h2>
+		<div  ng-class="textRed">
+			<p ng-non-bindable>ng-class="text-red"</p>
+		</div>
+	</div>
+	<div>
+		<h4>ng-repeat</h4>
+		<p ng-non-bindable>ng-class-even="textRed"</p>
+		<table width="200px" cellspacing="0" border="1">
+			<tr><th>Index</th><th>Vaule</th></tr>
+			<tr ng-repeat="a in arrs" ng-class-even="textRed">
+				<td>{{$index}}</td>
+				<td>{{a}}</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<h4>ng-non-bindable</h4>
+		<p ng-non-bindable>ng-bind-template="{{aname}}{{myHTML}}"</p>
+	</div>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.js"></script>
+<script type="text/javascript">
+	angular.module('myApp',[]).controller('myCtrl',function ($scope) {
+		$scope.aname = "Cb.Guo";
+		$scope.myHTML = " like Code!";
+		$scope.colorName = "red";
+		$scope.textRed = "text-red";
+		$scope.arrs = ['a','b','c','d'];
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Form Input</title>
+    <style type="text/css">
+    .form-state {
+        position: fixed;
+        right: 50px;
+        top: 10%;
+        min-height: 300px;
+        padding: 0 20px;
+        border: 1px solid #ddd;
+        max-width: 400px;
+        background: #f7f7f7;
+    }
+    
+    .form-child-state {
+        position: absolute;
+        right: 450px;
+        top: 0%;
+        min-height: 580px;
+        padding: 0 20px;
+        border: 1px solid #ddd;
+        max-width: 400px;
+        background: #f7f7f7;
+    }
+    
+    .my-form {
+        position: fixed;
+        padding: 20px 30px;
+    }
+    
+    .error {
+        color: #f00;
+    }
+    
+    label {
+        vertical-align: top;
+    }
+    
+    mark {
+        font-size: 14px;
+        color: #555;
+        background: #f5f5f5;
+        margin-left: 20px;
+    }
+    </style>
+</head>
+
+<body ng-app="formApp" ng-controller="formCtrl">
+    <form name="myForm" class="my-form">
+        <p>Form Name = myForm</p>
+        <p>user = {{user}}</p>
+        <p> User Name:
+            <Input type="text" name="userName" ng-model="user.userName" required>
+            <span class="error" ng-show="myForm.userName.$error.required">Required!</span></p>
+        <p>Age：
+            <Input type="number" name="age" min="1" max="99" ng-model="user.age" required>
+            <span class="error" ng-show="myForm.age.$error.required">Required!</span>
+            <span class="error" ng-show="myForm.age.$error.min||myForm.age.$error.max">Age Between 0 And 99!</span>
+            <span class="error" ng-show="myForm.age.$error.number">Not A Number!</span>
+            <br>
+            <mark>1-99</mark>
+        </p>
+        <p>Email：
+            <Input type="email" name="email" ng-model="user.email" required>
+            <span class="error" ng-show="myForm.email.$error.required">Required!</span>
+            <span class="error" ng-show="myForm.email.$error.email">Not Email!</span>
+        </p>
+        <p>Url：
+            <Input type="url" name="url" ng-model="user.url" required>
+            <span class="error" ng-show="myForm.url.$error.required">Required!</span>
+            <span class="error" ng-show="myForm.url.$error.url">Not Url!</span>
+        </p>
+        <p>Sex：
+            <Input type="radio" name="sex" ng-model="user.sex" value="1">Male
+            <Input type="radio" name="sex" ng-model="user.sex" value="0">Female
+        </p>
+        <p>
+            <label>Remark：</label>
+            <textarea ng-model="user.remark" name="remark" ng-maxLength="50" rows="6" cols="40"></textarea>
+            <br/><span class="error" ng-show="myForm.remark.$error.maxlength">Exceed Maximum Length！</span>
+            <br/>
+            <mark>Maximum Length 50</mark>
+        </p>
+        <p>
+            <button type="submit" ng-disabled="myForm.$invalid">Submit Form</button>
+            <button type="button" ng-click="reset()">Reset Form</button>
+            <button type="button" ng-click="load()">Load Form Data</button>
+        </p>
+    </form>
+    <div class="form-child-state">
+        <h4>Form Child State</h4>
+        <ul>
+            <li>
+                User Name
+                <ul>
+                    <li><small>myForm.userName.$pristine = {{myForm.userName.$pristine}}</small></li>
+                    <li><small>myForm.userName.$dirty = {{myForm.userName.$dirty}}</small></li>
+                    <li><small>myForm.userName.$valid = {{myForm.userName.$valid}}</small></li>
+                    <li><small>myForm.userName.$invalid = {{myForm.userName.$invalid}}</small></li>
+                    <li><small>myForm.userName.$error = {{myForm.userName.$error}}</small></li>
+                </ul>
+            </li>
+            <li>
+                Age
+                <ul>
+                    <li><small>myForm.age.$pristine = {{myForm.age.$pristine}}</small></li>
+                    <li><small>myForm.age.$dirty = {{myForm.age.$dirty}}</small></li>
+                    <li><small>myForm.age.$valid = {{myForm.age.$valid}}</small></li>
+                    <li><small>myForm.age.$invalid = {{myForm.age.$invalid}}</small></li>
+                    <li><small>myForm.age.$error = {{myForm.age.$error}}</small></li>
+                </ul>
+            </li>
+            <li>
+                Email
+                <ul>
+                    <li><small>myForm.email.$pristine = {{myForm.email.$pristine}}</small></li>
+                    <li><small>myForm.email.$dirty = {{myForm.email.$dirty}}</small></li>
+                    <li><small>myForm.email.$valid = {{myForm.email.$valid}}</small></li>
+                    <li><small>myForm.email.$invalid = {{myForm.email.$invalid}}</small></li>
+                    <li><small>myForm.email.$error = {{myForm.email.$error}}</small></li>
+                </ul>
+            </li>
+            <li>
+                url
+                <ul>
+                    <li><small>myForm.url.$pristine = {{myForm.url.$pristine}}</small></li>
+                    <li><small>myForm.url.$dirty = {{myForm.url.$dirty}}</small></li>
+                    <li><small>myForm.url.$valid = {{myForm.url.$valid}}</small></li>
+                    <li><small>myForm.url.$invalid = {{myForm.url.$invalid}}</small></li>
+                    <li><small>myForm.url.$error = {{myForm.url.$error}}</small></li>
+                </ul>
+            </li>
+            <li>
+                Sex
+                <p>{{user.sex}}</p>
+            </li>
+            <li>
+                Remark
+                <ul>
+                    <li><small>myForm.remark.$pristine = {{myForm.remark.$pristine}}</small></li>
+                    <li><small>myForm.remark.$dirty = {{myForm.remark.$dirty}}</small></li>
+                    <li><small>myForm.remark.$valid = {{myForm.remark.$valid}}</small></li>
+                    <li><small>myForm.remark.$invalid = {{myForm.remark.$invalid}}</small></li>
+                    <li><small>myForm.remark.$error = {{myForm.remark.$error}}</small></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="form-state">
+        <h4>Form State</h4>
+        <ul>
+            <li>
+                myForm.$pristine = {{myForm.$pristine}}
+            </li>
+            <li>
+                myForm.dirty = {{myForm.$dirty}}
+            </li>
+            <li>
+                myForm.valid = {{myForm.$valid}}
+            </li>
+            <li>
+                myForm.$invalid = {{myForm.$invalid}}
+            </li>
+            <li>
+                myForm.$error = <pre>{{myForm.$error}}</pre>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript">
+    angular.module('formApp', []).controller('formCtrl', function($scope) {
+        $scope.user = {
+            userName: '',
+            age: 0,
+            email: '',
+            url: '',
+            sex: 1,
+            remark: ''
+        };
+        $scope.load = function() {
+            $scope.user = {
+                userName: 'guest',
+                age: 22,
+                email: 'guocoder@gmail.com',
+                url: 'http://www.guocb.com/',
+                sex: 1,
+                remark: 'I Like Code!'
+            };
+        }
+        $scope.reset = function() {
+            $scope.user = {
+            userName: '',
+            age: 0,
+            email: '',
+            url: '',
+            sex: 1,
+            remark: ''
+        };
+        }
+    });
+    </script>
+</body>
+
+</html>

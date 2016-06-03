@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Filter2</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div>
+        <p>字符串：<span>{{originalText}}</span></p>
+        <p>大写格式：<span>{{upperText}}</span></p>
+        <p>小写格式：<span>{{lowerext}}</span></p>
+        <p>金额：<span>{{price}}</span></p>
+        <p>格式化金额：<span>{{currencyPrice}}</span></p>
+        <p>格式化当前时间：<span>{{strDate}}</span></p>
+		<p>格式化json对象：<span>{{jsonStr}}</span></p>
+    </div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript">
+    angular.module('myApp', []).controller('myCtrl', function($scope, $filter) {
+        $scope.originalText = 'heLLo';
+        $scope.upperText = $filter('uppercase')($scope.originalText);
+        $scope.lowerext = $filter('lowercase')($scope.originalText);
+        $scope.price = 1000000;
+        $scope.currencyPrice = $filter('currency')($scope.price,'￥');
+        $scope.strDate = $filter('date')(new Date(),'yyyy-MM-dd HH:mm:ss');
+        $scope.jsonStr = $filter('json')({'name':'ZhS','age':20});
+    });
+    </script>
+</body>
+
+</html>

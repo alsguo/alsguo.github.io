@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs ngAnimate</title>
+    <style type="text/css">
+    div.dg {
+        background-color: lightblue;
+        height: 100px;
+        transition: height ease 0.2s;
+    }
+    
+    .ng-hide {
+        height: 0;
+    }
+    </style>
+</head>
+<body ng-app="myApp">
+    <div >
+    	<h1>隐藏DIV：<input type="checkbox" ng-model="ckb"></h1>
+    	<div class="dg" ng-hide="ckb"></div>
+    </div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular-animate.min.js"></script>
+    <script type="text/javascript">
+    var myApp = angular.module('myApp', ['ngAnimate']);
+    </script>
+</body>
+
+</html>

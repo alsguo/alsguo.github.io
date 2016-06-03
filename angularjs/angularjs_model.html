@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs Model Bind</title>
+</head>
+<body>
+	<div ng-app ng-init="aname = 'Your Name'">
+		<p>姓名:<input type="text" ng-model="aname" ></p>
+		<p>ng-bind输出：<span ng-bind="aname | lowercase"></span></p>
+		<p>表达式输出：{{aname | uppercase}}</p>
+	</div>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</body>
+</html>

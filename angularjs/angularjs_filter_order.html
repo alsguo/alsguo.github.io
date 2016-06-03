@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs Filter Order</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" >
+	<h2>筛选与排序</h2>
+	<p>姓名：<input ng-model="uname"></p>
+	<p>城市：<input ng-model="ucity"></p>
+	<p>点击表头Age排序</p>
+	<table width="500px" border="1" cellspacing="0" >
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th><a href="" ng-click="predicate = 'age'; reverse=!reverse">Age</a></th>
+			<th>City</th>
+		</tr>
+		<tr ng-repeat="user in users | filter : {name:uname,city:ucity} | orderBy:predicate:reverse" >
+			<td>{{user.id}}</td>
+			<td>{{user.name}}</td>
+			<td>{{user.age}}</td>
+			<td>{{user.city}}</td> 
+		</tr>
+	</table>
+	<h2>limitTo</h2>
+	<div>
+		输入截取数组的数组的项：<input ng-model="arrIndex">
+		<p><span ng-repeat="i in arrs | limitTo : arrIndex">{{i}}</span></p>
+	</div>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('myApp',[]).controller('myCtrl',function ($scope) {
+		$scope.users = [
+			{id:1,name:'ZhangSan',age:20,city:'ShangHai'},
+			{id:2,name:'LiSi',age:26,city:'BeiJing'},
+			{id:3,name:'WangWu',age:28,city:'HangZhou'},
+			{id:4,name:'Zmus',age:40,city:'Albuquerque'},
+			{id:5,name:'Keb',age:38,city:'Portland'},
+			{id:6,name:'Mg',age:22,city:'Paris'},
+			{id:7,name:'Sur',age:29,city:'Brandenburg'},
+			{id:8,name:'Haol',age:30,city:'Cowes'},
+			{id:9,name:'Mei',age:27,city:'Warszawa'},
+			{id:10,name:'Amo',age:21,city:'Hk'},
+		];
+		$scope.arrs = [1,2,4,5,6,7,8,9];
+		$scope.arrIndex = $scope.arrs.length;
+	});
+</script>
+</body>
+</html>

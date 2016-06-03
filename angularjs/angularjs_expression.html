@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Expression</title>
+</head>
+ 
+<body ng-app>
+    <h2>字符串</h2>
+    <div ng-init="firstName='John';lastName='Doe'">
+        <p>姓名： {{ firstName + " " + lastName }}</p>
+        <p>使用ng-bind： <span ng-bind="firstName + ' ' + lastName"></span></p>
+    </div>
+    <h2>数学运算</h2>
+        <div ng-init="quantity=1.5;cost=5">
+            <p>总价： {{quantity * cost}}</p>
+            <p>使用ng-bind： <span ng-bind="quantity * cost"></span></p>
+        </div>
+    <h2>对象</h2>
+    <div ng-init="person={firstName:'John',lastName:'Doe'}">
+    	<p>person={{person}}</p>
+        <p>姓名： {{ person.firstName + " " + person.lastName }}</p>
+        <p>使用ng-bind： <span ng-bind="person.firstName + ' ' + person.lastName"></span></p>
+    </div>
+    <h2>数组</h2>
+    <div ng-init="points=[1,2,5,3,6,8,5,5,9]">
+    	<p>points={{points}}</p>
+        <p>第三个值为{{points[2]}}</p>
+        <p>使用ng-bind： 
+            <span ng-bind="points[2]"></span>
+        </p>
+    </div>
+    <h2>函数</h2>
+        <p>大写姓名： {{ firstName + " " + lastName | uppercase}}</p>
+        <p>小写姓名： {{ firstName + " " + lastName | lowercase}}</p>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</body>
+</html>

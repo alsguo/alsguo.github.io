@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs Event</title>
+</head>
+
+<body ng-app="eventApp" ng-controller="eventCtrl">
+    <div>
+        <h2>ng-click、ng-dblclick</h2>
+        <button ng-click="clickState='click'">Click</button>
+        <button  ng-dblclick="clickState='dblclick'">dblClick</button>
+        <span>{{clickState}}</span>
+    </div>
+    <div>
+    	<h2>ng-change、ng-focus、ng-blur、ng-submit</h2>
+    	<form ng-submit="formSubmit()">
+    		Name :　<input name="userName" ng-model="userName" ng-focus="userNameState='input focus'" ng-blur="userNameState='input blur'"><span>{{userNameState}}</span>
+    		<p><input type="submit" value="Submit"></p>
+    		<p>formValue = {{formValue}}</p>
+    	</form>
+    </div>
+    <div>
+        <h2>ng-keydown、ng-keypress、ng-keyup</h2>
+        <input  ng-keydown="keyState='keydown'" ng-keypress="keyState='keypress'" ng-keyup="keyState='keyup'">
+        {{keyState}}
+    </div>
+    <div>
+        <h2>ng-mousedown、ng-mouseup</h2>
+        <div>
+        	<p ng-non-bindable>ng-mousedown="ducount = ducount + 1" ng-mouseup="ducount = ducount - 1"</p>
+        	<button ng-mousedown="ducount = ducount + 1" ng-mouseup="ducount = ducount - 1" >
+			  mouse down/up
+			</button>
+			ducount: {{ducount}}
+        </div>
+        <h2>ng-mouseenter、ng-mouseleave</h2>
+        <div>
+        	<p ng-non-bindable>ng-mouseenter="elcount = elcount + 1" ng-mouseleave="elcount = elcount - 1"</p>
+        	<button ng-mouseenter="elcount = elcount + 1" ng-mouseleave="elcount = elcount - 1" >
+			  mouse enter/leave
+			</button>
+			elcount: {{elcount}}
+        </div>
+        <h2>ng-mouseover</h2>
+		<div>
+			<p ng-non-bindable>ng-mouseover="mocount = mocount + 1"</p>
+			<button ng-mouseover="mocount = mocount + 1">mouse over</button>
+			mocount: {{mocount}}
+		</div>
+        <h2>ng-mousemove</h2>
+        <div>
+        	<p ng-non-bindable>ng-mousemove="mvcount = mvcount + 1"</p>
+        	<button ng-mousemove="mvcount = mvcount + 1">mouse move</button>
+			mvcount: {{mvcount}}
+        </div>
+    </div>
+    <div>
+        <h2>ng-copy、ng-paste、ng-cut</h2>
+        <input type="text" value="try copy/cut/paste" ng-copy="mecpCtPaState = 'copy'" ng-paste="mecpCtPaState = 'paste'"  ng-cut="mecpCtPaState = 'cut'">
+        <span>{{mecpCtPaState}}</span>
+    </div>
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.js"></script>
+    <script type="text/javascript">
+    angular.module('eventApp', []).controller('eventCtrl', function($scope) {
+    	$scope.clickState = "";
+    	$scope.formValue = {};
+    	$scope.userName = "";
+    	$scope.userNameState = ""
+    	$scope.formSubmit = function () {
+    		$scope.formValue['userName'] = $scope.userName;
+    		$scope.userName = "";
+    	}
+    	$scope.keyState = '';
+    	$scope.cpCtPaState = '';
+    	$scope.ducount = $scope.elcount  = $scope.mocount = $scope.mvcount =  0;
+    });
+    </script>
+</body>
+
+</html>
