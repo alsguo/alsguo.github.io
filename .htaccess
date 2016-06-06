@@ -1,4 +1,4 @@
 <IfModule rewrite_module>
 RewriteEngine On
-RewriteRule ^(.*)$ #/$1
+RewriteRule ^(.*)$ http://alsguo.github.io/#/$1
 </IfModule>
