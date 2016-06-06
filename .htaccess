@@ -1,4 +1,4 @@
 <IfModule rewrite_module>
 RewriteEngine On
-RewriteRule ^/(.*)$ http://alsguo.github.io/#/$1
+RewriteRule ^/(.*)$ index.html#/$1
 </IfModule>
