@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AlsGuo's Blog</title>
+    <title>K</title>
     <!--<link href="http://fonts.useso.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"
           type="text/css">-->
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -29,10 +29,11 @@
             		<p>Third: Calc your K/D</p>
             	</blockquote>
             	<p>Simple combination : <select ng-model="combo"><option value="65,175,24"> 65kg - 175cm - 24age </option></select></p>
+            	<p><label>man: <input type="radio" name="sex" ng-model="sex" value="0"></label> <label>wwoman: <input type="radio" name="sex" ng-model="sex" value="1"></label></p>
             	<br />
             	<h2>BMR</h2>
-            	<p>man : 66 + ( 13.7 x 体重kg ) + ( 5 x 身高cm ) - ( 6.8 x 年龄years )</p>
-            	<p>66 + ( 13.7 x <input type="text" ng-model="weight" size="4" /> ) + ( 5 x <input type="text" ng-model="height"  size="4"/> ) - ( 6.8 x <input type="text" ng-model="age"  size="4"/>  ) = {{bmr}}BMR</p>
+            	<p>{{opdatas[sex][0]}} + ( {{opdatas[sex][1]}} x 体重kg ) + ( {{opdatas[sex][2]}} x 身高cm ) - ( {{opdatas[sex][3]}} x 年龄years )</p>
+            	<p>{{opdatas[sex][0]}} + ( {{opdatas[sex][1]}} x <input type="text" ng-model="weight" size="4" /> ) + ( {{opdatas[sex][2]}} x <input type="text" ng-model="height"  size="4"/> ) - ( {{opdatas[sex][3]}} x <input type="text" ng-model="age"  size="4"/>  ) = {{bmr}}BMR</p>
             	<br />
             	<h2>SPORT BMR</h2>
             	<p>{{bmr}} * <select ng-model="spBmrCn">
@@ -59,7 +60,11 @@
 <script type="text/javascript">
 	angular.module('app', ['ngRoute'])
             .controller('myCtrl',function($scope){
-            	
+            	$scope.opdatas = [
+		            	[66,13.7,5,6.8],
+		            	[655,9.6,1.8,4.7]
+	            	]
+            	$scope.sex = 0;
             	$scope.weight = 0;
             	$scope.height = 0;
             	$scope.age = 0;
@@ -87,9 +92,13 @@
             	$scope.$watch('spBmrCn',function() {
         			calcBmr();
 				})
-            	
+            	$scope.$watch('sex',function() {
+        			calcBmr();
+				})
             	function calcBmr(){
-					$scope.bmr = 66 + (13.7 * $scope.weight) + (5 * $scope.height) + (6.8 * $scope.age);
+					$scope.bmr = $scope.opdatas[$scope.sex][0] + ($scope.opdatas[$scope.sex][1] * $scope.weight) 
+									+ ($scope.opdatas[$scope.sex][2] * $scope.height) 
+									+ ($scope.opdatas[$scope.sex][3] * $scope.age);
         			$scope.sportBmr = $scope.bmr * $scope.spBmrCn;
         			$scope.dayK = $scope.sportBmr * 0.8;
             	}
