@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript" src="../js/mootools-core.js"></script>
+		<script type="text/javascript">
+			let tfmt = 'font-size:24px;font-weight:bold;text-transform:capitalize';
+			console.log("%cMooTools array", tfmt + ';color:red')
+
+			let arrs = ['Sun', 'Mon', 'Tue'];
+
+			console.log('%c原生ForEach', tfmt)
+			arrs.forEach(function(item, index) {
+				console.log(item, index)
+			})
+
+			console.log('%c原生filter', tfmt)
+			const nArrs = arrs.filter(item => item != 'Sun')
+			console.log(nArrs)
+
+			console.log('%c原生map', tfmt)
+			const nums = [1, 2, 4].map(item => item * 2)
+			console.log(nums)
+
+			console.log('%c原生splice 删除指定元素', tfmt)
+			let vegetables = ['Cabbage', 'Turnip', 'Radish', 'Carrot']
+			console.log(vegetables)
+			let pos = 1 //位置
+			let n = 2
+			let removedItems = vegetables.splice(pos, 1)
+			console.log(vegetables)
+			console.log(removedItems)
+
+			console.log('%cMooTools 原型each', tfmt)
+			//extends
+			Array.each(arrs, function(day, index) {
+				console.log(day, index)
+			})
+
+			console.log('%cMooTools 对象each', tfmt)
+			arrs.each(function(day, index) {
+				console.log(day, index)
+			})
+
+			console.log('%cMooTools associate 转换key-value', tfmt)
+			var animals = ['Cow', 'Pig', 'Dog', 'Cat'];
+			var sounds = ['Moo', 'Oink', 'Woof', 'Miao'];
+			console.log(sounds.associate(animals))
+
+			console.log('%cMooTools contains 存在', tfmt)
+			console.log(['a', 'b', 'c'].contains('a'))
+			console.log(['a', 'b', 'c'].contains('d'))
+
+			console.log('%cMooTools include 增加一个元素，不存在时', tfmt)
+			console.log(['a', 'b', 'c'].include('a'))
+
+			console.log('%cMooTools combine 联合两个数组，不允许重复', tfmt)
+			animals = ['Cow', 'Pig', 'Dog'].combine(['Cat', 'Dog'])
+			console.log(animals)
+			
+			console.log('%cMooTools erase 从数组中删除一个或多个相同项', tfmt)
+			console.log(['Cow', 'Pig', 'Dog', 'Cat', 'Dog'].erase('Dog'))
+		</script>
+	</body>
+
+</html>
