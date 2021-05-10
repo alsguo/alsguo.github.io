@@ -1,2 +1,1 @@
-#### About Sport Info
-[link](http://alsguo.github.io/)
+[alsguo.github.io](http://alsguo.github.io/)
